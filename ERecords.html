@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<re:basic ctx="<%=path%>" theme="default" jsrc="/js/PDFObjec/pdfobject.min.js" />
+<script type="text/javascript">
+	PDFObject.embed("", "#pdf_view");
+</script>
+</head>
+<title>E-Records H5</title>
+<body>
+	<!-- 接口调用返回此H5页面，显示电子档案内容 -->
+	<div id = "pdf_view" style="height: 100%">
+		<!-- <embed id="_embed" style="vertical-align: middle;margin:10px;"type="application/pdf"> -->
+	</div>
+</body>
+</html>

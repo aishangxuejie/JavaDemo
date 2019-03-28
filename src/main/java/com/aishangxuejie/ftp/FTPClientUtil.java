@@ -1,4 +1,4 @@
-package com.aishangxuejie.java.ftp;
+package com.aishangxuejie.ftp;
 
 import java.io.IOException;
 import java.io.InputStream;

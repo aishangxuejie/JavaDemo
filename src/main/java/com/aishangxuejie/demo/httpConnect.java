@@ -1,6 +1,6 @@
 package com.aishangxuejie.demo;
 
-import util.HttpRequest;
+import com.aliyuncs.http.HttpRequest;
 
 public class httpConnect {
 
@@ -14,6 +14,6 @@ public class httpConnect {
 	final static String topMsg ="0";
 	final static String __ ="1512103139017";
 	public static void main(String[] args) {
-		HttpRequest.sendGet(ZHUBODANMU,"roomid="+roomid);
+//		HttpRequest.sendGet(ZHUBODANMU,"roomid="+roomid);
 	}
 }

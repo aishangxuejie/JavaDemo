@@ -457,10 +457,10 @@ public class PinyinUtil {
      * 字符对应的ASCII
      * @return String
      * 拼音,首先判断ASCII是否>0&<160,如果是返回对应的字符,
-     * <BR>否则到SpellMap中查�?,如果没有找到拼音,则返回null,如果找到则返回拼�?.
+     * <BR>否则到SpellMap中查�?,如果没有找到拼音,则返回null,如果找到则返回拼�?.
      */
     public static String getSpellByAscii(int ascii) {
-        if (ascii > 0 && ascii < 160) { //单字�?
+        if (ascii > 0 && ascii < 160) { //单字�?
             return String.valueOf( (char) ascii);
         }
 
@@ -497,9 +497,9 @@ public class PinyinUtil {
     }
 
     /**
-     * 返回字符串的全拼,是汉字转化为全拼,其它字符不进行转�?
+     * 返回字符串的全拼,是汉字转化为全拼,其它字符不进行转�?
      * @param cnStr String
-     * 字符�?
+     * 字符�?
      * @return String
      * 转换成全拼后的字符串
      */
@@ -512,7 +512,7 @@ public class PinyinUtil {
         StringBuffer retuBuf = new StringBuffer();
         for (int i = 0, Len = chars.length; i < Len; i++) {
             int ascii = getCnAscii(chars[i]);
-            if (ascii == 0) { //取ascii时出�?
+            if (ascii == 0) { //取ascii时出�?
                 retuBuf.append(chars[i]);
             }
             else {
@@ -530,9 +530,9 @@ public class PinyinUtil {
     }
 
     /**
-     * 第一个字取全�?,后面的字取首字母
+     * 第一个字取全�?,后面的字取首字母
      * @param cnStr
-     * @return 返回转换后的�?
+     * @return 返回转换后的�?
      */
     public static String getFirstSpell(String cnStr) {
         if (null == cnStr || "".equals(cnStr.trim())) {
@@ -544,7 +544,7 @@ public class PinyinUtil {
         for (int i = 0, Len = chars.length; i < Len; i++) {
             int ascii = getCnAscii(chars[i]);
 
-            if (ascii == 0) { //取ascii时出�?
+            if (ascii == 0) { //取ascii时出�?
                 retuBuf.append(chars[i]);
             }
             else {
@@ -553,7 +553,7 @@ public class PinyinUtil {
                     retuBuf.append(chars[i]);
                 }
                 else {
-                    if (i == 0) { //第一个字取全�?
+                    if (i == 0) { //第一个字取全�?
                         retuBuf.append(spell);
                     }
                     else { //后面的字取首字母
@@ -597,13 +597,13 @@ public class PinyinUtil {
     
     public static void main(String[] args) {
         String str = "中华人明共和国Haha";
-        // 转换成拼�?
+        // 转换成拼�?
         System.out.println(PinyinUtil.getFullSpell(str));
         // 中文第一个字全拼,其余去首字母
         System.out.println(PinyinUtil.getFirstSpell(str));
-        // ascii �? 字母
+        // ascii �? 字母
         System.out.println(PinyinUtil.getSpellByAscii(65));
-        // 字母 �? ascii
+        // 字母 �? ascii
         System.out.println(PinyinUtil.getCnAscii('0'));
     }
 }

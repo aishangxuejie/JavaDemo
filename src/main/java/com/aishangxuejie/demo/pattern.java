@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * @param name
  * @param pathName
  */
-public class zz {
+public class pattern {
 
 	public static void main(String[] args) {
 		

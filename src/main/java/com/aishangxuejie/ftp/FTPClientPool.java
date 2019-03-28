@@ -1,4 +1,4 @@
-package com.aishangxuejie.java.ftp;
+package com.aishangxuejie.ftp;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.pool2.impl.GenericObjectPool;

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.aishangxuejie.java.FTPUtil;
+import com.aishangxuejie.demo.FTPUtil;
 
 import lombok.extern.log4j.Log4j2;
 

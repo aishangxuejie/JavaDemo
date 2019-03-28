@@ -2,7 +2,7 @@ package com.aishangxuejie;
 
 import org.junit.Test;
 
-import com.aishangxuejie.java.readproperties;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @author: Cuigm
@@ -10,11 +10,14 @@ import com.aishangxuejie.java.readproperties;
  * @Description: TODO
  * @date: 2019年3月1日上午9:40:23
  */
+@Log4j2
 public class pstest {
 
 	@Test
 	public void captchaProducer(){
-		readproperties rp = new readproperties();
-		System.out.println(rp.IP);
+		int i= 10;
+		int j= 10;
+		log.error(i++);
+		log.error(++j);
 	}
 }

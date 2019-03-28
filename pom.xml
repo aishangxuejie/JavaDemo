@@ -74,7 +74,13 @@
 		    <artifactId>aliyun-sms-spring-boot-starter</artifactId>
 		    <version>1.0.0</version>
 		</dependency>
-		
+		<!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
+		<dependency>
+		    <groupId>org.fusesource.jansi</groupId>
+		    <artifactId>jansi</artifactId>
+		    <version>1.11</version>
+		</dependency>
+				
 		
 	</dependencies>
 
