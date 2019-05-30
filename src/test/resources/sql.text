@@ -1,94 +1,23 @@
-select a.AKA063,
-       ALC408,
-       ALC406,
-       SAKA063,
-       SALC408,
-       SALC406,
-       BAKA063,
-       BALC408,
-       BALC406,
-       QAKA063,
-       QALC408,
-       QALC406
-  from (select f_getcodename('AKA063', AKA063, '') aka063
-          from lc40_d
-         where aae080 = '110727'
-         group by aka063) a
-  left join (select f_getcodename('AKA063', AKA063, '') aka063,
-                    sum(alc407) as alc408,
-                    sum(alc406) as alc406
-               from lkb1, lc40_d
-              where lkb1.aae080 = lc40_d.aae080
-                and lkb1.aae080 = '110727'
-                and lkb1.aae500 = '2'
-              group by aka063) q
-    on a.aka063 = q.aka063
-  left join (select f_getcodename('AKA063', AKA063, '') saka063,
-                    sum(alc407) as Salc408,
-                    sum(alc406) as Salc406
-               from lkb1, lc40_d
-              where lkb1.aae080 = lc40_d.aae080
-                and lkb1.aae080 = '110727'
-                and marktype = '1'
-                and lkb1.aae500 = '2'
-              group by aka063) b
-    on a.aka063 = b.saka063
-  left join (select f_getcodename('AKA063', AKA063, '') baka063,
-                    sum(alc407) as balc408,
-                    sum(alc406) as balc406
-               from lkb1, lc40_d
-              where lkb1.aae080 = lc40_d.aae080
-                and lkb1.aae080 = '110727'
-                and aka065 = '3'
-                and lkb1.aae500 = '2'
-              group by aka063) c
-    on a.aka063 = c.baka063
-  left join (select f_getcodename('AKA063', AKA063, '') qaka063,
-                    sum(alc407) as Qalc408,
-                    sum(alc406) as Qalc406
-               from lkb1, lc40_d
-              where lkb1.aae080 = lc40_d.aae080
-                and lkb1.aae080 = '110727'
-                and marktype <> '1'
-                and noinjury = '1'
-                and lkb1.aae500 = '2'
-              group by aka063) c
-    on a.aka063 = c.qaka063 
- union all
- select *
-  from (select '总计' as aka063,
-               round(sum(alc407), 2) as alc408,
-               sum(alc406) as alc406
-          from lkb1, lc40_d
-         where lkb1.aae080 = lc40_d.aae080
-           and lkb1.aae500 = '2'
-           and lkb1.aae080 = '110727') d
-  left join (select '总计' as saka063,
-                    round(sum(alc407), 2) as salc408,
-                    sum(alc406) as salc406
-               from lkb1, lc40_d
-              where lkb1.aae080 = lc40_d.aae080
-                and marktype = '1'
-                and lkb1.aae500 = '2'
-                and lkb1.aae080 = '110727') e
-    on d.aka063 = e.saka063
-  left join (select '总计' as baka063,
-                    round(sum(alc407), 2) as balc408,
-                    sum(alc406) as balc406
-               from lkb1, lc40_d
-              where lkb1.aae080 = lc40_d.aae080
-                and aka065 = '3'
-                and noinjury = '1'
-                and lkb1.aae500 = '2'
-                and lkb1.aae080 = '110727') f
-    on d.aka063 = f.baka063
-  left join (select '总计' as qaka063,
-                    round(sum(alc407), 2) as qalc408,
-                    sum(alc406) as qalc406
-               from lkb1, lc40_d
-              where lkb1.aae080 = lc40_d.aae080
-                   
-                and noinjury = '1'
-                and lkb1.aae500 = '2'
-                and lkb1.aae080 = '110727') f
-    on d.aka063 = f.qaka063
+select dd.akb020,dd.akb021,dd.residue,aa.akc194c,aa.akc192c,cc.alc070,bb.pcut
+from 
+(select akb020, akb021, nvl((select 12 - sum(realpoints) residue from kb06 where kb06.akb020 = kb01.akb020 group by akb020, aaa027),12) residue
+from kb01 
+where akb020 in (select sheng020 from lka4_1 where shi = '130100')) dd
+left join 
+(select akb020,count(akc194) akc194c,count(1)-count(akc194)akc192c
+from lkb1 where akb020 in (select sheng020 from lka4_1 where shi = '130100')
+and to_char(akc192,'yyyymm') = to_char(add_months(sysdate,-12),'yyyymm') group by akb020) aa
+on dd.akb020 = aa.akb020 left join 
+(select akb020 ,sum(nvl(alc408,0)) pcut from
+(select akb020,(select sum(alc408) from lc40 where lc40.aae080 = lkb1.aae080) alc408
+from lkb1 where akb020 in (select sheng020 from lka4_1 where shi = '130100')
+and to_char(aae036,'yyyymm') = to_char(add_months(sysdate,-12),'yyyymm')) a group by akb020) bb
+on aa.akb020 = bb.akb020
+left join 
+(select akb020,sum(nvl(alc070,0)) alc070
+from lc09
+where exists(select 1 from lkb1 where akb020 in (select sheng020 from lka4_1 where shi = '130100')
+and lkb1.aac001 = lc09.aac001  and lkb1.alca02 = lc09.alca02 and lkb1.alca18 = lc09.alca18
+and to_char(akc192,'yyyymm') = to_char(add_months(sysdate,-12),'yyyymm'))and ala041 in ('010','013') 
+and aae002 > to_char(add_months(sysdate,-12),'yyyymm') group by akb020) cc
+on aa.akb020 = cc.akb020

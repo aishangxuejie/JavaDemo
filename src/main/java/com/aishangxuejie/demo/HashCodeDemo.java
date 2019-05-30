@@ -19,8 +19,8 @@ public class HashCodeDemo {
 	static Map<Md01Key, Md01> map = new HashMap<Md01Key, Md01>(20000);
 	static Map<Md01Key, String> map2 = new HashMap<Md01Key, String>(20000);
 	public static void main(String[] args) {
-		one();
-//		two();
+//		one();
+		two();
 	}
 	/**
 	 * @Author: Cuigm
@@ -55,8 +55,8 @@ public class HashCodeDemo {
 	 * @throws
 	 */
 	private static void one() {
-		Md01 md01 = new Md01();
 		for (int i=0;i<5;i++) {
+			Md01 md01 = new Md01();
 			Md01Key key = new Md01Key();
 			key.setMd001("med001_"+i);
 			key.setAab301("13000"+i);
