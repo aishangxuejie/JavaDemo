@@ -3,6 +3,8 @@ package com.aishangxuejie.demo;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
@@ -50,5 +52,16 @@ public class Java8Date {
 		}
 		es.shutdown();
 		es.awaitTermination(1, TimeUnit.DAYS);
+	}
+	
+	
+	@Test
+	public void test1() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		System.out.println("yyyy-MM-dd HH:mm:ss".length());
+		ZonedDateTime zdt = LocalDateTime.from(dtf.parse("2020-02-20 16:47:32")).atZone(ZoneId.systemDefault());
+		Date a = Date.from(zdt.toInstant());
+		System.out.println(a);
+		
 	}
 }
