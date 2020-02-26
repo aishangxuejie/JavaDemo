@@ -2,6 +2,8 @@ package com.aishangxuejie.annotation;
 
 import java.lang.reflect.Field;
 
+import org.junit.Test;
+
 /**
  * @author: Cuigm
  * @ClassName:  annotationTest
@@ -10,7 +12,9 @@ import java.lang.reflect.Field;
  */
 public class AnnotationTest {
 	
-	public static void main(String[] args) {
+	@Test
+	public void test1() {
+		
 		Class<?> clazz = Call.class;
 		Field[] fields = clazz.getDeclaredFields();
 		for (Field field : fields) {
@@ -20,5 +24,6 @@ public class AnnotationTest {
 				System.out.println(cbstr);
 			}
 		}
+		
     }
 }
