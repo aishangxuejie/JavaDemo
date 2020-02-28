@@ -1,5 +1,7 @@
 package com.aishangxuejie.demo;
 
+import org.junit.Test;
+
 /**
  * @author: Cuigm
  * @ClassName:  MS
@@ -12,4 +14,25 @@ public class MS {
 	 * 
 	 */
 
+	@Test
+	public void maiji() {
+		int gj;
+		int mj;
+		int xj;
+		int count = 1;
+		for(gj=0;gj<=20;gj++) {
+			for(mj=0;mj<=33;mj++) {
+				for(xj=0;xj<=300-mj-gj;xj+=3) {
+					if(100 == mj*3+gj*5+xj/3) {
+						count++;
+						System.out.printf(count+"公鸡：%s;母鸡：%s;小鸡：%s\n",gj,mj,xj);
+					}
+				}
+			}
+		}
+		System.out.println("end");
+	}
+	
+	
+	
 }
